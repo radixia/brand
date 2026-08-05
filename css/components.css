@@ -4,10 +4,10 @@
  * Depends on `tokens.css` and assumes `base.css` for typography.
  *
  * The button is the piece most often reimplemented and most often got wrong, so
- * it is here in full: the 3px radius (buttons are 3px, cards are --radius/10px —
- * they are deliberately different), the 7px leading dot, the 44px minimum touch
- * target, and the theme-independent CTA background that keeps white text above
- * AA in dark mode.
+ * it is here in full: the button radius (`--radius-btn`/3px, against `--radius`/
+ * 10px for cards — deliberately different), the 7px leading dot, the 44px
+ * minimum touch target, and the theme-independent CTA background that keeps
+ * white text above AA in dark mode.
  */
 
 /* ---------- Buttons ---------- */
@@ -20,7 +20,7 @@
   font-size: 0.95rem;
   letter-spacing: 0.01em;
   padding: 0.78em 1.5em;
-  border-radius: 3px;
+  border-radius: var(--radius-btn);
   /* guarantees a 44px touch target on every button/CTA (WCAG 2.5.5) */
   min-height: 44px;
   box-sizing: border-box;
@@ -59,7 +59,7 @@
   background: transparent;
   color: var(--ink);
   box-shadow: inset 0 0 0 1.5px var(--ink);
-  border-radius: 3px;
+  border-radius: var(--radius-btn);
 }
 .btn--ghost:hover {
   background: var(--ink);

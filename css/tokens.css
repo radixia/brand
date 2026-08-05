@@ -38,7 +38,12 @@
 
   --w-max: 1240px;
   --w-prose: 720px;
+  /* Two radii, deliberately different: cards and panels are soft at 10px,
+     buttons are nearly square at 3px. Both are tokens rather than one token and
+     one literal, because a consumer reading only `--radius` will put buttons on
+     10px and the difference is the first thing that reads as off-brand. */
   --radius: 10px;
+  --radius-btn: 3px;
 
   /* Motion — ONE vocabulary of easings and durations, shared by every
      micro-interaction and reveal. Consistency of movement is what reads as
