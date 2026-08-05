@@ -1,0 +1,47 @@
+@radixia/brand
+Copyright 2026 Radixia S.r.l.
+
+This product includes software developed by Radixia S.r.l. (https://www.radixia.ai).
+
+--------------------------------------------------------------------------------
+Trademarks
+--------------------------------------------------------------------------------
+
+The Apache License, Version 2.0 covers the code in this repository. As stated in
+section 6 of that licence, it does not grant permission to use Radixia's trade
+names, trademarks, service marks or product names.
+
+Concretely: the stylesheets are yours to read, fork, learn from and adapt. The
+"Radixia" name, the root-node mark drawn in `css/signature.css`, and the
+distinctive combination of these tokens as a brand identity are not.
+
+Fork the structure, keep your own colours. If a page built on this package could
+be mistaken for a Radixia page, that is the line.
+
+--------------------------------------------------------------------------------
+Bundled fonts — separately licensed
+--------------------------------------------------------------------------------
+
+The WOFF2 files in `fonts/` are NOT covered by the Apache licence above. All
+three are licensed under the SIL Open Font License, Version 1.1, and the full
+text of each accompanies it in `fonts/licenses/` as that licence requires.
+
+  Fraunces          Copyright 2018 The Fraunces Project Authors
+                    https://github.com/undercasetype/Fraunces
+                    fonts/licenses/Fraunces-OFL.txt
+
+  Public Sans       Copyright 2015 The Public Sans Project Authors
+                    (a fork of Libre Franklin)
+                    https://github.com/uswds/public-sans
+                    fonts/licenses/PublicSans-OFL.txt
+
+  JetBrains Mono    Copyright 2020 The JetBrains Mono Project Authors
+                    https://github.com/JetBrains/JetBrainsMono
+                    fonts/licenses/JetBrainsMono-OFL.txt
+
+These are latin-subset variable builds derived from the upstream releases. Under
+OFL 1.1 you may use, study, modify and redistribute them, including bundled with
+your own work; you may not sell the fonts on their own. None of the three declares
+a Reserved Font Name, so that clause of the OFL does not bite here — but check the
+upstream licence yourself before renaming a derivative, rather than taking this
+sentence's word for it.

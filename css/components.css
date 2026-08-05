@@ -1,0 +1,74 @@
+/**
+ * Radixia components — the shared, brand-carrying primitives.
+ *
+ * Depends on `tokens.css` and assumes `base.css` for typography.
+ *
+ * The button is the piece most often reimplemented and most often got wrong, so
+ * it is here in full: the 3px radius (buttons are 3px, cards are --radius/10px —
+ * they are deliberately different), the 7px leading dot, the 44px minimum touch
+ * target, and the theme-independent CTA background that keeps white text above
+ * AA in dark mode.
+ */
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  padding: 0.78em 1.5em;
+  border-radius: 3px;
+  /* guarantees a 44px touch target on every button/CTA (WCAG 2.5.5) */
+  min-height: 44px;
+  box-sizing: border-box;
+  /* --magenta-btn, not --magenta: white on --magenta drops to 4.08:1 in dark
+     mode, under AA. This token is theme-independent for exactly that reason. */
+  background: var(--magenta-btn);
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition:
+    background var(--dur-1) var(--ease-out),
+    color var(--dur-1) var(--ease-out),
+    transform var(--dur-1) var(--ease-out);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+/* The leading dot — the signature detail that makes a Radixia button
+   recognisable. `currentColor` so it inherits through every variant. */
+.btn::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.85;
+  flex: none;
+}
+.btn:hover {
+  background: var(--magenta-btn-hover);
+  color: #fff;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--ink);
+  border-radius: 3px;
+}
+.btn--ghost:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn--onDark {
+  background: var(--magenta-btn);
+}
+.btn--onDark:hover {
+  background: var(--magenta-btn-hover);
+}

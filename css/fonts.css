@@ -1,0 +1,48 @@
+/**
+ * Self-hosted variable fonts, latin subset — for bundler consumers.
+ *
+ * URLs are relative to this file, so Vite / Astro / webpack resolve them,
+ * fingerprint them and rewrite them to hashed asset paths. This is the variant
+ * to import from an app with a build step.
+ *
+ * If you serve CSS as plain text with no bundler — a Cloudflare Worker
+ * rendering HTML, for instance — use `fonts-absolute.css` instead and copy the
+ * woff2 files to `/fonts/` on your own origin. Relative URLs would resolve
+ * against the stylesheet's own URL there, which is rarely what you want.
+ *
+ * One variable WOFF2 per family covers every weight. `font-display: swap` keeps
+ * text visible while they load; the token fallbacks (Georgia, system-ui,
+ * ui-monospace) carry the page until then.
+ *
+ * Self-hosted rather than served from Google Fonts on purpose: no third-party
+ * round-trip and no visitor IP handed to Google.
+ *
+ * All three families are SIL Open Font License 1.1 — see fonts/licenses/.
+ */
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/fraunces-latin-var.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/public-sans-latin-var.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url("../fonts/jetbrains-mono-latin-var.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}

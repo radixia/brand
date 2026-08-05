@@ -1,0 +1,44 @@
+/**
+ * Self-hosted variable fonts, latin subset — for consumers without a bundler.
+ *
+ * Identical to `fonts.css` except the URLs are absolute `/fonts/…`. Use this
+ * when the CSS is served as plain text and nothing rewrites its asset URLs: a
+ * Cloudflare Worker rendering HTML, an email template, a static file dropped on
+ * a CDN.
+ *
+ * The contract is that YOUR origin serves the three woff2 files at `/fonts/`.
+ * Copy them out of this package's `fonts/` directory as part of your deploy. If
+ * you do not, these three requests 404 and every family silently falls back to
+ * the token's fallback stack — which looks fine in a screenshot and is wrong.
+ * That failure is quiet, so check it once with devtools open rather than
+ * trusting it.
+ *
+ * All three families are SIL Open Font License 1.1 — see fonts/licenses/.
+ */
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/fraunces-latin-var.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/public-sans-latin-var.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url("/fonts/jetbrains-mono-latin-var.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}

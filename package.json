@@ -1,0 +1,42 @@
+{
+  "name": "@radixia/brand",
+  "version": "0.1.0",
+  "description": "Radixia's design tokens, base layer and shared components — framework-agnostic CSS plus generated JS/JSON tokens. The single source of truth for every Radixia surface.",
+  "license": "Apache-2.0",
+  "author": "Radixia S.r.l. (https://www.radixia.ai)",
+  "homepage": "https://github.com/radixia/brand",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radixia/brand.git"
+  },
+  "keywords": ["design-tokens", "css", "design-system", "radixia"],
+  "type": "module",
+  "sideEffects": ["*.css"],
+  "exports": {
+    ".": {
+      "types": "./tokens/index.d.ts",
+      "default": "./tokens/index.js"
+    },
+    "./tokens.json": "./tokens/tokens.json",
+    "./all.css": "./css/all.css",
+    "./tokens.css": "./css/tokens.css",
+    "./fonts.css": "./css/fonts.css",
+    "./fonts-absolute.css": "./css/fonts-absolute.css",
+    "./base.css": "./css/base.css",
+    "./components.css": "./css/components.css",
+    "./signature.css": "./css/signature.css",
+    "./fonts/*": "./fonts/*",
+    "./package.json": "./package.json"
+  },
+  "files": ["css", "fonts", "tokens", "LICENSE", "NOTICE", "README.md"],
+  "scripts": {
+    "tokens": "node scripts/generate-tokens.mjs",
+    "test": "node scripts/generate-tokens.mjs --check && node scripts/validate-css.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

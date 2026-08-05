@@ -1,0 +1,126 @@
+/**
+ * Radixia base layer — reset, typography and the primitives every surface uses.
+ *
+ * Depends on `tokens.css`; import that first (or import `all.css`). Nothing here
+ * hard-codes a colour, a font or a duration: it is all `var(--token)`, so a
+ * consumer that overrides the tokens gets a coherent restyle for free.
+ *
+ * Deliberately NOT here, because these are per-site decisions rather than brand:
+ * section shells, page chrome, scroll-library glue, and which elements animate on
+ * reveal. Those belong to the consuming app's own skin layer.
+ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+::selection {
+  background: var(--magenta);
+  color: #fff;
+}
+
+/* Skip link (WCAG 2.4.1): first focusable element, visible only on focus.
+   In the base layer rather than per-site because every page needs it and it is
+   the kind of thing a redesign silently drops. */
+.skiplink {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10000;
+  background: var(--magenta);
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 18px;
+  border-radius: 0 0 8px 0;
+}
+.skiplink:focus {
+  left: 0;
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Honour a reduced-motion preference globally. This kills animation and
+   transition outright rather than shortening them — the shared motion vocabulary
+   in tokens.css is a stylistic choice, and a user asking for less motion is not
+   asking for faster motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+/* Links rest at --magenta-deep and BRIGHTEN on hover. Resting on plain
+   --magenta failed AA on tinted surfaces; see the token comments. */
+a {
+  color: var(--magenta-deep);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--dur-1) var(--ease-out);
+}
+a:hover {
+  color: var(--link-hover);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.wrap {
+  max-width: var(--w-max);
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 40px);
+}
+
+/* The shared reveal animation. The keyframes live here so every Radixia surface
+   rises the same way; WHICH elements reveal is the consumer's business, so the
+   selector wiring (and the `animation-timeline: view()` rule) stays in the app.
+   Note that `animation-timeline` must sit in its own rule — a minifier will fold
+   it into the `animation` shorthand otherwise, which is invalid and silently
+   disables the effect. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

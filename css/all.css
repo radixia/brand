@@ -1,0 +1,14 @@
+/**
+ * Everything a typical Radixia surface needs, in the right order.
+ *
+ *   @import "@radixia/brand/all.css";
+ *
+ * Uses the bundler-relative font variant, so this is for apps with a build step.
+ * Without one, import the layers yourself and swap in `fonts-absolute.css`.
+ *
+ * `signature.css` is deliberately excluded — see the note in that file.
+ */
+@import "./tokens.css";
+@import "./fonts.css";
+@import "./base.css";
+@import "./components.css";
