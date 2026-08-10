@@ -16,7 +16,7 @@
 }
 
 ::selection {
-  background: var(--magenta);
+  background: var(--accent);
   color: #fff;
 }
 
@@ -28,7 +28,7 @@
   left: -9999px;
   top: 0;
   z-index: 10000;
-  background: var(--magenta);
+  background: var(--accent);
   color: #fff;
   text-decoration: none;
   font-family: var(--font-body);
@@ -84,10 +84,10 @@ h4 {
   text-wrap: balance;
 }
 
-/* Links rest at --magenta-deep and BRIGHTEN on hover. Resting on plain
-   --magenta failed AA on tinted surfaces; see the token comments. */
+/* Links rest at --accent-deep and BRIGHTEN on hover. Resting on plain
+   --accent failed AA on tinted surfaces; see the token comments. */
 a {
-  color: var(--magenta-deep);
+  color: var(--accent-deep);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   transition: color var(--dur-1) var(--ease-out);

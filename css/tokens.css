@@ -9,27 +9,60 @@
  * The contrast comments are load-bearing. Several values look arbitrary and are
  * not — they are the result of measuring against WCAG AA on the specific
  * surfaces they land on. Changing one means re-measuring it, not eyeballing it.
+ *
+ * ---------------------------------------------------------------------------
+ * v1.0.0 — the accent is no longer magenta.
+ *
+ * Marco's call, 2026-08-10: every pink and violet gradation leaves the system.
+ * Two rules in the website's DESIGN.md fall with it — One Bloom, which made
+ * Bloom Magenta the identity, and Warm-Neutral, which required the violet
+ * undertone in the greys. DESIGN.md is the document to rewrite next; this file
+ * only stops asserting the old values.
+ *
+ * What was measured before deciding: magenta covered 2.61% of the site's first
+ * screen against its own ~10% budget, so "less magenta" was never the fix. The
+ * accent is the only saturated colour on the page, so it carries the whole
+ * chromatic identity at any size — and the ground sat on the accent's own hue
+ * axis (270° ground, 327° accent), which is why the accent read as the site's
+ * colour instead of as an accent. Ground and accent had to move together:
+ *
+ *   accent  327° 85% sat  ->  357° oxide red, and the ground's undertone
+ *   ground  270° violet   ->  ~40° warm, saturation collapsed
+ *
+ * The tokens are also RENAMED: `--magenta*` becomes `--accent*`. No aliases,
+ * deliberately. MCP Census's sync script reads the generated JS mirror and
+ * already maps magenta -> accent (its own comment: structural CSS that says
+ * `--accent` can be re-themed by anyone), so an alias of the form
+ * `--magenta: var(--accent)` would be copied into its theme verbatim and become
+ * a circular reference. Both consumers are migrated in the same pass instead.
+ * BREAKING for anything else reading --magenta*.
+ * ---------------------------------------------------------------------------
  */
 :root {
-  --paper: #fbf9fb;
-  --paper-2: #f4eef4;
-  --ink: #1a1023;
-  --ink-2: #4c3f58;
-  /* Clears WCAG AA on every light surface: 4.93:1 on --paper, 4.52:1 on
-     --paper-2 (.section--tint), 5.17:1 on --card. The previous #7d7188 was
-     4.37:1 on both --paper and --paper-2, just under AA, and this token carries
-     small text (mono eyebrows, counters, card meta). */
-  --ink-3: #74697e;
-  --magenta: #d6117e;
-  --magenta-deep: #9c0b5c;
-  /* Link hover. Links rest at --magenta-deep and brighten on hover; plain
-     --magenta only reached 4.33:1 on --paper-2, under AA. This clears AA on
-     every light surface (5.16 / 4.73 / 5.40) and still reads as a brightening. */
-  --link-hover: #cc0f74;
-  --violet: #6e3fa3;
-  --line: #e6dde8;
+  --paper: #faf9f7;
+  --paper-2: #f2f0ec;
+  --ink: #1c1a17;
+  --ink-2: #4f4a43;
+  /* Clears WCAG AA on every light surface: 5.22:1 on --paper, 4.82:1 on
+     --paper-2 (.section--tint), 5.49:1 on --card. This token carries small text
+     (mono eyebrows, counters, card meta), so it is the first to fail when the
+     ground moves, and --paper-2 is the binding constraint rather than --paper:
+     #767066 measured 4.66 / 4.31 / 4.91 and was rejected on the tint bands. */
+  --ink-3: #6f6860;
+  /* Oxide red. White on it is 7.15:1, up from 5.40:1 on the magenta it
+     replaces — the accent got more legible, not just less pink. */
+  --accent: #a8232a;
+  --accent-deep: #7d1a1f;
+  /* Link hover. Links rest at --accent-deep (9.79:1 on --paper) and brighten on
+     hover; this clears AA at 5.41:1 and still reads as a brightening. */
+  --link-hover: #c22b33;
+  /* Hero engine only (roots-engine.ts reads it for the mid-depth branches).
+     Never a UI colour. Was #6e3fa3 violet; now a warm grey, because a purple
+     branch against an oxide seed is the one disagreement left in the drawing. */
+  --violet: #8a7f74;
+  --line: #e4e0d9;
   --card: #ffffff;
-  --dark-panel: #1a1023;
+  --dark-panel: #1c1a17;
   color-scheme: light;
 
   --font-display: "Fraunces", Georgia, serif;
@@ -54,56 +87,71 @@
   --dur-2: 0.28s;   /* composite states: cards, buttons */
   --dur-3: 0.62s;   /* scroll reveals */
 
-  /* CTA background: white text stays AA (>=4.5:1) on these in BOTH themes.
-     Kept theme-independent on purpose — the old var(--magenta) dipped to
-     4.08:1 with white in dark mode. --magenta-btn ~5.4:1, hover ~8:1. */
-  --magenta-btn: #cc0f74;
-  --magenta-btn-hover: #9c0b5c;
+  /* CTA background: white text stays AA (>=4.5:1) on these. 7.15:1 resting,
+     10.30:1 hover. Overridden in dark below — not because white stops clearing
+     AA on it, but because #a8232a is 2.50:1 against the dark ground, so the
+     button stopped reading as an object. */
+  --accent-btn: #a8232a;
+  --accent-btn-hover: #7d1a1f;
 
   /* On-dark surface palette. The .section--dark / terminal / footer panels are
      dark in both themes, so these accents are theme-independent tokens instead
-     of the hard-coded hexes they replace. */
+     of the hard-coded hexes they replace. Measured on --dark-panel (#121110):
+     fg 15.72:1, fg-2 12.53:1, fg-3 10.65:1, muted 6.29:1, accent 7.45:1. */
   --od-heading: #ffffff;
-  --od-fg: #efe8f2;
-  --od-fg-2: #d9cce2;
-  --od-fg-3: #c9bcd4;
-  --od-muted: #94869f;
-  --od-muted-2: #a795b5;
-  --od-accent: #ff8ecb;
-  --od-accent-2: #ffb3da;
+  --od-fg: #eeeae2;
+  --od-fg-2: #d8d2c6;
+  --od-fg-3: #c9c2b4;
+  --od-muted: #9c9488;
+  --od-muted-2: #b0a89a;
+  --od-accent: #e8897a;
+  --od-accent-2: #ffa693;
 }
 
-/* Dark theme: follows the system unless the user forced light */
+/* Dark theme. NOT the system default any more: the website's pre-paint script
+   sets data-theme explicitly and defaults to light, because this system is
+   built on paper and following the OS served most visitors its inversion. This
+   block stays for the surfaces that do follow the OS. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #16101c;
-    --paper-2: #211a29;
-    --ink: #efe8f4;
-    --ink-2: #c6b8d2;
-    --ink-3: #94869f;
-    --magenta: #e5308f;
-    --magenta-deep: #ff7ec0;
-    /* Brighter than the resting colour, as in light mode: hovering used to drop
-       contrast from 8.00:1 to 4.30:1 on cards, inverting the affordance. */
-    --link-hover: #ffb3da;
-    --line: #362b42;
-    --card: #1e1626;
-    --dark-panel: #0f0a14;
+    --paper: #191714;
+    --paper-2: #211f1b;
+    --ink: #eeeae2;
+    --ink-2: #c3bcb0;
+    --ink-3: #9c9488;
+    /* Three values, because one cannot do all three jobs on a dark ground.
+       --accent paints graphics that carry no text (hero nodes, hairline fills):
+       4.21:1 against this ground. --accent-btn carries white text at 5.70:1 and
+       still separates from the ground at 3.14:1. --accent-deep is the text/link
+       colour at 7.06:1. Using --accent for the button would put white on
+       #d9483c at 4.25:1, just under AA. */
+    --accent: #d9483c;
+    --accent-btn: #c02f2a;
+    --accent-btn-hover: #a8232a;
+    --accent-deep: #e8897a;
+    --link-hover: #ffa693;
+    --violet: #7a7167;
+    --line: #37332c;
+    --card: #1d1b17;
+    --dark-panel: #121110;
     color-scheme: dark;
   }
 }
 /* Manual override */
 :root[data-theme="dark"] {
-  --paper: #16101c;
-  --paper-2: #211a29;
-  --ink: #efe8f4;
-  --ink-2: #c6b8d2;
-  --ink-3: #94869f;
-  --magenta: #e5308f;
-  --magenta-deep: #ff7ec0;
-  --link-hover: #ffb3da;
-  --line: #362b42;
-  --card: #1e1626;
-  --dark-panel: #0f0a14;
+  --paper: #191714;
+  --paper-2: #211f1b;
+  --ink: #eeeae2;
+  --ink-2: #c3bcb0;
+  --ink-3: #9c9488;
+  --accent: #d9483c;
+  --accent-btn: #c02f2a;
+  --accent-btn-hover: #a8232a;
+  --accent-deep: #e8897a;
+  --link-hover: #ffa693;
+  --violet: #7a7167;
+  --line: #37332c;
+  --card: #1d1b17;
+  --dark-panel: #121110;
   color-scheme: dark;
 }

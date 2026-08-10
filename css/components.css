@@ -24,9 +24,9 @@
   /* guarantees a 44px touch target on every button/CTA (WCAG 2.5.5) */
   min-height: 44px;
   box-sizing: border-box;
-  /* --magenta-btn, not --magenta: white on --magenta drops to 4.08:1 in dark
+  /* --accent-btn, not --accent: white on --accent drops to 4.08:1 in dark
      mode, under AA. This token is theme-independent for exactly that reason. */
-  background: var(--magenta-btn);
+  background: var(--accent-btn);
   color: #fff;
   text-decoration: none;
   border: none;
@@ -51,7 +51,7 @@
   flex: none;
 }
 .btn:hover {
-  background: var(--magenta-btn-hover);
+  background: var(--accent-btn-hover);
   color: #fff;
 }
 
@@ -67,8 +67,8 @@
 }
 
 .btn--onDark {
-  background: var(--magenta-btn);
+  background: var(--accent-btn);
 }
 .btn--onDark:hover {
-  background: var(--magenta-btn-hover);
+  background: var(--accent-btn-hover);
 }
