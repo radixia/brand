@@ -56,10 +56,19 @@
   /* Link hover. Links rest at --accent-deep (9.79:1 on --paper) and brighten on
      hover; this clears AA at 5.41:1 and still reads as a brightening. */
   --link-hover: #c22b33;
-  /* Hero engine only (roots-engine.ts reads it for the mid-depth branches).
-     Never a UI colour. Was #6e3fa3 violet; now a warm grey, because a purple
-     branch against an oxide seed is the one disagreement left in the drawing. */
-  --violet: #8a7f74;
+  /* Hero engine only: roots-engine.ts reads it for the mid-depth branches, which
+     are the bulk of the drawing. Never a UI colour — see the note in Versioning.
+     v1.1.0: 30% saturation, in the accent's hue family. v1.0.0 shipped this as a
+     9%-saturation warm grey and the drawing lost its hue: the branches held their
+     contrast (3.72:1) but on a dark ground presence comes from saturation, not
+     contrast, so they read as dirt rather than as a drawing. The violet it
+     replaced carried 44%. 6.80:1 on --paper. */
+  --hero-mid: #7d4a44;
+  /* Deprecated alias, removed in the next major. Nothing outside this repo's own
+     website reads it (MCP Census's sync map never included it), so unlike the
+     --magenta aliases this one cannot be copied into a downstream theme and
+     become a circular reference. */
+  --violet: var(--hero-mid);
   --line: #e4e0d9;
   --card: #ffffff;
   --dark-panel: #1c1a17;
@@ -130,7 +139,9 @@
     --accent-btn-hover: #a8232a;
     --accent-deep: #e8897a;
     --link-hover: #ffa693;
-    --violet: #7a7167;
+    /* 44% saturation on dark, matching the register the violet had, and 5.39:1
+       against this ground where that violet managed 2.58:1. */
+    --hero-mid: #c47a68;
     --line: #37332c;
     --card: #1d1b17;
     --dark-panel: #121110;
@@ -149,7 +160,7 @@
   --accent-btn-hover: #a8232a;
   --accent-deep: #e8897a;
   --link-hover: #ffa693;
-  --violet: #7a7167;
+  --hero-mid: #c47a68;
   --line: #37332c;
   --card: #1d1b17;
   --dark-panel: #121110;

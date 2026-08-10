@@ -130,6 +130,15 @@ Semver on the *visual* contract, not just the API surface:
 - **major** — an existing token changes value, or a component's markup contract
   changes. Consumers must be able to take patches without reviewing screenshots.
 
+One carve-out, added in 1.1.0: a token documented as **engine-only** — read by a
+canvas or SVG engine to paint decoration, never rendered as UI, never carrying
+text — may change value in a minor. `--hero-mid` is the only one today. The rule
+exists so consumers can skip screenshot review; a token no consumer renders as UI
+cannot invalidate their review. Anything that carries text or defines a surface
+stays under the major rule, which is exactly where `--hero-mid`'s predecessor
+`--violet` had drifted: it was being used as a badge background with white text
+on it, at 3.91:1. If an engine-only token turns up in a UI rule, that is the bug.
+
 ## Licence
 
 Apache-2.0 for the code. The bundled fonts are OFL-1.1 and separately licensed.

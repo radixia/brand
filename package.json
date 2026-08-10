@@ -1,6 +1,6 @@
 {
   "name": "@radixia/brand",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Radixia's design tokens, base layer and shared components \u2014 framework-agnostic CSS plus generated JS/JSON tokens. The single source of truth for every Radixia surface.",
   "license": "Apache-2.0",
   "author": "Radixia S.r.l. (https://www.radixia.ai)",
