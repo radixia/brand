@@ -64,8 +64,8 @@ inline SVG:
 ```js
 import { light, dark, cssVar } from "@radixia/brand";
 
-light["accent"];    // "#a8232a"
-dark["paper"];      // "#191714"
+light["accent"];    // "#660099"
+dark["paper"];      // "#181419"
 cssVar("ink-2");    // "var(--ink-2)"
 ```
 

@@ -37,41 +37,73 @@
  * a circular reference. Both consumers are migrated in the same pass instead.
  * BREAKING for anything else reading --magenta*.
  * ---------------------------------------------------------------------------
+ *
+ * ---------------------------------------------------------------------------
+ * v1.2.0 — the accent is Radixia Purple. The oxide-red experiment ends here.
+ *
+ * Same day, later: the official Radixia Brand Guidelines (v1.0, master v1.3)
+ * were released and none of this repo had seen them yet. They freeze exactly
+ * two colours for the logo — #660099 (Radixia Purple) and white — and say so
+ * in the plainest possible terms: "the palette is deliberately rigid... no
+ * secondary palette, no gradients", and rule 03 of incorrect use is "do not
+ * recolor: only #660099 or white." That settles the collision the v1.1.0 note
+ * above left open: the oxide-red accent this package shipped and the v1.3
+ * violet lockup were 77° apart on the same screen, and it is the accent that
+ * has to move, not the logo. The guide itself only governs the mark; "support
+ * palette for products and communication" is explicitly listed as **not yet
+ * defined**. Extending #660099 to the site's own accent, rather than inventing
+ * a third hue next to a frozen logo, is the coherent reading of a system whose
+ * own rule is "no secondary palette" — Marco's call, not a technical one.
+ *
+ * No token is renamed. Only values move, hue-rotated from the oxide-red
+ * numbers straight to 280° (the accent's own hue) at the *same* saturation and
+ * lightness the oxide system used — the lesson that survives the hue change is
+ * that the accent should be the only saturated colour on the page, so the
+ * neutrals stay exactly as desaturated as they were, just re-hued to match:
+ *
+ *   accent  357° oxide red  ->  280° Radixia Purple (#660099 exactly)
+ *   ground   ~40° warm      ->  280°, same S/L as the oxide neutrals
+ *
+ * Every ratio below is recomputed against the new backgrounds, not carried
+ * over — a hue rotation shifts relative luminance (blue contributes far less
+ * to it than red does), so a value that cleared AA at 357° is not guaranteed
+ * to clear it at 280°. All of them do, several with more margin than before.
+ * ---------------------------------------------------------------------------
  */
 :root {
-  --paper: #faf9f7;
-  --paper-2: #f2f0ec;
-  --ink: #1c1a17;
-  --ink-2: #4f4a43;
-  /* Clears WCAG AA on every light surface: 5.22:1 on --paper, 4.82:1 on
-     --paper-2 (.section--tint), 5.49:1 on --card. This token carries small text
+  --paper: #f8f6f9;
+  --paper-2: #f1edf3;
+  --ink: #1a171c;
+  --ink-2: #4c4450;
+  /* Clears WCAG AA on every light surface: 5.48:1 on --paper, 5.08:1 on
+     --paper-2 (.section--tint), 5.88:1 on --card. This token carries small text
      (mono eyebrows, counters, card meta), so it is the first to fail when the
-     ground moves, and --paper-2 is the binding constraint rather than --paper:
-     #767066 measured 4.66 / 4.31 / 4.91 and was rejected on the tint bands. */
-  --ink-3: #6f6860;
-  /* Oxide red. White on it is 7.15:1, up from 5.40:1 on the magenta it
-     replaces — the accent got more legible, not just less pink. */
-  --accent: #a8232a;
-  --accent-deep: #7d1a1f;
-  /* Link hover. Links rest at --accent-deep (9.79:1 on --paper) and brighten on
-     hover; this clears AA at 5.41:1 and still reads as a brightening. */
-  --link-hover: #c22b33;
+     ground moves, and --paper-2 is the binding constraint rather than --paper —
+     same margin the oxide system held (4.52:1 there) despite the hue change. */
+  --ink-3: #6b6170;
+  /* Radixia Purple, #660099 exactly — frozen by the brand guidelines, not a
+     shade picked for this file. White on it is 10.37:1, up from 7.15:1 on the
+     oxide red it replaces. */
+  --accent: #660099;
+  --accent-deep: #440066;
+  /* Link hover. Links rest at --accent-deep (13.59:1 on --paper) and brighten on
+     hover; this clears AA at 5.28:1 and still reads as a brightening. */
+  --link-hover: #9f0ce9;
   /* Hero engine only: roots-engine.ts reads it for the mid-depth branches, which
      are the bulk of the drawing. Never a UI colour — see the note in Versioning.
-     v1.1.0: 30% saturation, in the accent's hue family. v1.0.0 shipped this as a
-     9%-saturation warm grey and the drawing lost its hue: the branches held their
-     contrast (3.72:1) but on a dark ground presence comes from saturation, not
-     contrast, so they read as dirt rather than as a drawing. The violet it
-     replaced carried 44%. 6.80:1 on --paper. */
-  --hero-mid: #7d4a44;
+     30% saturation, in the accent's hue family, matching the register the oxide
+     version held (also 30%) so the drawing's presence on a dark ground does not
+     regress: presence there comes from saturation, not contrast. 6.87:1 on
+     --paper. */
+  --hero-mid: #6d4681;
   /* Deprecated alias, removed in the next major. Nothing outside this repo's own
      website reads it (MCP Census's sync map never included it), so unlike the
      --magenta aliases this one cannot be copied into a downstream theme and
      become a circular reference. */
   --violet: var(--hero-mid);
-  --line: #e4e0d9;
+  --line: #e0d8e3;
   --card: #ffffff;
-  --dark-panel: #1c1a17;
+  --dark-panel: #1a171c;
   color-scheme: light;
 
   --font-display: "Fraunces", Georgia, serif;
@@ -96,25 +128,25 @@
   --dur-2: 0.28s;   /* composite states: cards, buttons */
   --dur-3: 0.62s;   /* scroll reveals */
 
-  /* CTA background: white text stays AA (>=4.5:1) on these. 7.15:1 resting,
-     10.30:1 hover. Overridden in dark below — not because white stops clearing
-     AA on it, but because #a8232a is 2.50:1 against the dark ground, so the
+  /* CTA background: white text stays AA (>=4.5:1) on these. 10.37:1 resting,
+     13.59:1 hover. Overridden in dark below — not because white stops clearing
+     AA on it, but because #660099 is 1.76:1 against the dark ground, so the
      button stopped reading as an object. */
-  --accent-btn: #a8232a;
-  --accent-btn-hover: #7d1a1f;
+  --accent-btn: #660099;
+  --accent-btn-hover: #440066;
 
   /* On-dark surface palette. The .section--dark / terminal / footer panels are
      dark in both themes, so these accents are theme-independent tokens instead
-     of the hard-coded hexes they replace. Measured on --dark-panel (#121110):
-     fg 15.72:1, fg-2 12.53:1, fg-3 10.65:1, muted 6.29:1, accent 7.45:1. */
+     of the hard-coded hexes they replace. Measured on --dark-panel (#121113):
+     fg 14.89:1, fg-2 11.40:1, fg-3 9.66:1, muted 5.57:1, accent 6.43:1. */
   --od-heading: #ffffff;
-  --od-fg: #eeeae2;
-  --od-fg-2: #d8d2c6;
-  --od-fg-3: #c9c2b4;
-  --od-muted: #9c9488;
-  --od-muted-2: #b0a89a;
-  --od-accent: #e8897a;
-  --od-accent-2: #ffa693;
+  --od-fg: #eae2ee;
+  --od-fg-2: #d2c5d8;
+  --od-fg-3: #c3b5c9;
+  --od-muted: #95879b;
+  --od-muted-2: #a99bb0;
+  --od-accent: #c378e8;
+  --od-accent-2: #db94ff;
 }
 
 /* Dark theme. NOT the system default any more: the website's pre-paint script
@@ -123,46 +155,46 @@
    block stays for the surfaces that do follow the OS. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #191714;
-    --paper-2: #211f1b;
-    --ink: #eeeae2;
-    --ink-2: #c3bcb0;
-    --ink-3: #9c9488;
+    --paper: #181419;
+    --paper-2: #201c22;
+    --ink: #eae2ee;
+    --ink-2: #bdb1c4;
+    --ink-3: #95879b;
     /* Three values, because one cannot do all three jobs on a dark ground.
        --accent paints graphics that carry no text (hero nodes, hairline fills):
-       4.21:1 against this ground. --accent-btn carries white text at 5.70:1 and
+       4.16:1 against this ground. --accent-btn carries white text at 5.80:1 and
        still separates from the ground at 3.14:1. --accent-deep is the text/link
-       colour at 7.06:1. Using --accent for the button would put white on
-       #d9483c at 4.25:1, just under AA. */
-    --accent: #d9483c;
-    --accent-btn: #c02f2a;
-    --accent-btn-hover: #a8232a;
-    --accent-deep: #e8897a;
-    --link-hover: #ffa693;
-    /* 44% saturation on dark, matching the register the violet had, and 5.39:1
-       against this ground where that violet managed 2.58:1. */
-    --hero-mid: #c47a68;
-    --line: #37332c;
-    --card: #1d1b17;
-    --dark-panel: #121110;
+       colour at 7.12:1. Using --accent for the button would put white on
+       #ad49df at 4.38:1, just under AA. */
+    --accent: #ad49df;
+    --accent-btn: #9d12e2;
+    --accent-btn-hover: #660099;
+    --accent-deep: #d181f8;
+    --link-hover: #dfa8fa;
+    /* 44% saturation on dark, matching the register the oxide accent held, and
+       5.46:1 against this ground where that oxide version managed 5.39:1. */
+    --hero-mid: #ae77ca;
+    --line: #322b36;
+    --card: #1b161d;
+    --dark-panel: #121113;
     color-scheme: dark;
   }
 }
 /* Manual override */
 :root[data-theme="dark"] {
-  --paper: #191714;
-  --paper-2: #211f1b;
-  --ink: #eeeae2;
-  --ink-2: #c3bcb0;
-  --ink-3: #9c9488;
-  --accent: #d9483c;
-  --accent-btn: #c02f2a;
-  --accent-btn-hover: #a8232a;
-  --accent-deep: #e8897a;
-  --link-hover: #ffa693;
-  --hero-mid: #c47a68;
-  --line: #37332c;
-  --card: #1d1b17;
-  --dark-panel: #121110;
+  --paper: #181419;
+  --paper-2: #201c22;
+  --ink: #eae2ee;
+  --ink-2: #bdb1c4;
+  --ink-3: #95879b;
+  --accent: #ad49df;
+  --accent-btn: #9d12e2;
+  --accent-btn-hover: #660099;
+  --accent-deep: #d181f8;
+  --link-hover: #dfa8fa;
+  --hero-mid: #ae77ca;
+  --line: #322b36;
+  --card: #1b161d;
+  --dark-panel: #121113;
   color-scheme: dark;
 }
