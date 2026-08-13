@@ -72,10 +72,16 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Headline register (Brand Guidelines v1.7, p.26): Inter Display, Light,
-   tracking -10. `font-optical-sizing: auto` is what makes it Display — it
-   maps the opsz axis from the rendered size, so a consumer whose Inter file
-   still lacks the opsz cut gets a harmless no-op instead of a broken rule. */
+/* Headline register (Brand Guidelines v1.7, p.26): Inter Display, tracking
+   -10. `font-optical-sizing: auto` is what makes it Display — it maps the
+   opsz axis from the rendered size, so a consumer whose Inter file still
+   lacks the opsz cut gets a harmless no-op instead of a broken rule.
+   Weight 600, not the guide's own Light (300): 2.0.0 shipped 400 (Regular)
+   as the literal middle of the two-voice retirement, and it read thin on
+   every consumer's real headings once compared side by side against what
+   they replaced — confirmed on the website's hero and section headings, not
+   assumed. 600 is the deliberate deviation that holds up; still one family,
+   still this token's tracking, a weight choice and nothing else. */
 h1,
 h2,
 h3,
@@ -84,7 +90,7 @@ h4 {
   font-optical-sizing: auto;
   line-height: 1.08;
   letter-spacing: var(--track-display);
-  font-weight: 400;
+  font-weight: 600;
   text-wrap: balance;
 }
 

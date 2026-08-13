@@ -146,6 +146,12 @@ token changing name and value, so major by the rule above, no carve-out
 applies. Four `--track-*` tokens were added alongside it; those alone would
 have been minor.
 
+**3.0.0** raised `base.css`'s shared `h1-h4` rule from weight 400 to 600 —
+not a token, but exactly the kind of rendered-pixel change the *visual*
+contract (not just the API) covers. 400 was the literal middle of the
+two-voice retirement and read thin once compared against the headings it
+replaced on a real page, confirmed rather than assumed.
+
 ## Licence
 
 Apache-2.0 for the code. The bundled fonts are OFL-1.1 and separately licensed.
