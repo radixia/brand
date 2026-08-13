@@ -23,8 +23,12 @@ Bundled fonts — separately licensed
 --------------------------------------------------------------------------------
 
 The WOFF2 files in `fonts/` are NOT covered by the Apache licence above. All
-three are licensed under the SIL Open Font License, Version 1.1, and the full
+four are licensed under the SIL Open Font License, Version 1.1, and the full
 text of each accompanies it in `fonts/licenses/` as that licence requires.
+
+  Inter             Copyright 2016 The Inter Project Authors
+                    https://github.com/rsms/inter
+                    fonts/licenses/Inter-OFL.txt
 
   Fraunces          Copyright 2018 The Fraunces Project Authors
                     https://github.com/undercasetype/Fraunces
@@ -39,9 +43,15 @@ text of each accompanies it in `fonts/licenses/` as that licence requires.
                     https://github.com/JetBrains/JetBrainsMono
                     fonts/licenses/JetBrainsMono-OFL.txt
 
-These are latin-subset variable builds derived from the upstream releases. Under
-OFL 1.1 you may use, study, modify and redistribute them, including bundled with
-your own work; you may not sell the fonts on their own. None of the three declares
-a Reserved Font Name, so that clause of the OFL does not bite here — but check the
-upstream licence yourself before renaming a derivative, rather than taking this
-sentence's word for it.
+These are latin-subset variable builds derived from the upstream releases (Inter's
+build carries both its weight and optical-size axes — the `opsz` axis is what lets
+`font-optical-sizing: auto` produce the Display cut the brand guidelines specify).
+Under OFL 1.1 you may use, study, modify and redistribute them, including bundled
+with your own work; you may not sell the fonts on their own. None of the four
+declares a Reserved Font Name, so that clause of the OFL does not bite here — but
+check the upstream licence yourself before renaming a derivative, rather than
+taking this sentence's word for it.
+
+Fraunces and Public Sans are no longer read by any token as of v2.0.0 — see the
+tokens.css changelog — but stay bundled until v2.1.0 so nothing on a v1.x/v2.0.0
+mix breaks mid-migration.

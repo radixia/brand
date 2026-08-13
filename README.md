@@ -78,7 +78,7 @@ Two variants, and picking the wrong one fails quietly:
 | | URLs | For |
 |---|---|---|
 | `fonts.css` | `../fonts/…` relative | Anything with a bundler. Vite/Astro/webpack resolve, fingerprint and rewrite them. |
-| `fonts-absolute.css` | `/fonts/…` absolute | CSS served as plain text — a Worker, an email, a file on a CDN. **You must serve the three woff2 files at `/fonts/` yourself.** |
+| `fonts-absolute.css` | `/fonts/…` absolute | CSS served as plain text — a Worker, an email, a file on a CDN. **You must serve the four woff2 files at `/fonts/` yourself.** |
 
 If the files are missing, the browser falls back to the token's fallback stack.
 The page still looks deliberate, which is what makes this worth stating twice.
@@ -93,7 +93,7 @@ css/base.css         reset, typography, links, .wrap, .skiplink, reduced-motion
 css/components.css   .btn, .btn--ghost, .btn--onDark
 css/signature.css    the root-node mark (identity, not craft — excluded from all.css)
 css/all.css          tokens + fonts + base + components
-fonts/               three latin-subset variable WOFF2, OFL-1.1 (see NOTICE)
+fonts/               four latin-subset variable WOFF2, OFL-1.1 (see NOTICE)
 tokens/              GENERATED — tokens.json, index.js, index.d.ts
 ```
 
@@ -138,6 +138,13 @@ cannot invalidate their review. Anything that carries text or defines a surface
 stays under the major rule, which is exactly where `--hero-mid`'s predecessor
 `--violet` had drifted: it was being used as a badge background with white text
 on it, at 3.91:1. If an engine-only token turns up in a UI rule, that is the bug.
+
+**2.0.0** renamed `--font-display`/`--font-body` to a single `--font-sans`
+(Brand Guidelines v1.7: Inter is the only corporate/UI typeface, editorial and
+product/UI told apart by weight/size/tracking, not by family) — an existing
+token changing name and value, so major by the rule above, no carve-out
+applies. Four `--track-*` tokens were added alongside it; those alone would
+have been minor.
 
 ## Licence
 

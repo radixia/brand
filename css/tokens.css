@@ -69,6 +69,43 @@
  * to it than red does), so a value that cleared AA at 357° is not guaranteed
  * to clear it at 280°. All of them do, several with more margin than before.
  * ---------------------------------------------------------------------------
+ *
+ * ---------------------------------------------------------------------------
+ * v2.0.0 — one typeface. The two-voice system retires.
+ *
+ * Radixia Brand Guidelines v1.7 (design frozen, August 2026) settles the
+ * typography question v1.4 left half-open: Inter is the ONLY corporate/UI
+ * typeface. Editorial and product/UI content are told apart by weight, size
+ * and tracking alone — never by a second family. That retires Fraunces
+ * (display/headings) and Public Sans (body); `--font-mono` is unchanged and
+ * stays code-only.
+ *
+ * `--font-display` and `--font-body` are RENAMED to a single `--font-sans`,
+ * not aliased. Keeping both names pointed at Inter would preserve the API
+ * while lying about it — the whole point of retiring the two-voice system is
+ * that the names no longer describe two different voices. The alias route
+ * was already rejected once, for the same structural reason as the v1.0.0
+ * magenta->accent rename above: MCP Census's sync script copies token
+ * *values* verbatim into its own generated theme, so `--font-display:
+ * var(--font-sans)` would land there as an unresolvable circular reference,
+ * not a working style. Both consumers are migrated in the same pass instead.
+ * BREAKING for anything reading --font-display or --font-body.
+ *
+ * Four tracking tokens are ADDED — `--track-display/-nav/-label/-meta`. With
+ * one family, tracking is the only axis left that carries the register
+ * distinction that family used to carry; getting a byline's +0.06em confused
+ * with a label's +0.02em collapses editorial into product exactly the way a
+ * wrong `--radius-btn` reads as off-brand (see that token's own comment).
+ * Weight, size and line-height stay literals in the consuming CSS, as they
+ * already were — four axes times six roles of new tokens would document an
+ * invariant that does not exist.
+ *
+ * Fraunces and Public Sans stay in `fonts.css`/`fonts-absolute.css` for this
+ * release: `@font-face` is lazy, an unreferenced family costs zero bytes, and
+ * removing the files now would break Census before it has migrated off them.
+ * They are retired in 2.1.0, once Census and the site are both confirmed on
+ * this version.
+ * ---------------------------------------------------------------------------
  */
 :root {
   --paper: #f8f6f9;
@@ -106,9 +143,18 @@
   --dark-panel: #1a171c;
   color-scheme: light;
 
-  --font-display: "Fraunces", Georgia, serif;
-  --font-body: "Public Sans", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Register-carrying tracking, in em (guide values are 1/1000 em: -10 ->
+     -0.01em, +60 -> 0.06em). One family means tracking is the only axis left
+     that tells editorial from product/UI apart — see the v2.0.0 note above.
+     No --track-body: `normal` is the CSS default and a token for "nothing"
+     documents no invariant. */
+  --track-display: -0.01em;  /* headline, editorial — guide's -10 */
+  --track-nav: 0.01em;       /* navigation — guide's +10 */
+  --track-label: 0.02em;     /* label / status / button, uppercase — guide's +20 */
+  --track-meta: 0.06em;      /* byline / metadata, uppercase — guide's +60 */
 
   --w-max: 1240px;
   --w-prose: 720px;

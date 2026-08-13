@@ -11,14 +11,17 @@
  */
 
 /* ---------- Buttons ---------- */
+/* Label/status/button register (Brand Guidelines v1.7, p.26): Inter SemiBold,
+   uppercase, tracking +20. */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.6em;
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
   font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.01em;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
   padding: 0.78em 1.5em;
   border-radius: var(--radius-btn);
   /* guarantees a 44px touch target on every button/CTA (WCAG 2.5.5) */
