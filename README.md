@@ -40,6 +40,12 @@ is the bug.
 npm i @radixia/brand
 ```
 
+## Design guide
+
+This README covers the package's mechanics. For when to use a component,
+which pattern fits a given task, and the reasoning behind a decision, see
+the [design guide](docs/README.md).
+
 ## Use
 
 Most apps want everything, in order:
